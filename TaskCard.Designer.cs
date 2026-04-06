@@ -38,27 +38,37 @@
             // 
             // deleteBtn
             // 
-            deleteBtn.Location = new Point(166, 68);
+            deleteBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            deleteBtn.BackColor = Color.MistyRose;
+            deleteBtn.FlatAppearance.BorderSize = 0;
+            deleteBtn.FlatStyle = FlatStyle.Flat;
+            deleteBtn.ForeColor = Color.Black;
+            deleteBtn.Location = new Point(253, 12);
             deleteBtn.Name = "deleteBtn";
             deleteBtn.Size = new Size(78, 29);
             deleteBtn.TabIndex = 2;
             deleteBtn.Text = "Удалить";
-            deleteBtn.UseVisualStyleBackColor = true;
+            deleteBtn.UseVisualStyleBackColor = false;
             deleteBtn.Click += deleteBtn_Click;
+            deleteBtn.MouseEnter += deleteBtn_MouseEnter;
+            deleteBtn.MouseLeave += deleteBtn_MouseLeave;
             // 
             // TaskLbl
             // 
             TaskLbl.AutoSize = true;
-            TaskLbl.Location = new Point(29, 25);
+            TaskLbl.Font = new Font("Segoe UI", 10F);
+            TaskLbl.ForeColor = Color.FromArgb(64, 64, 64);
+            TaskLbl.Location = new Point(13, 49);
+            TaskLbl.MaximumSize = new Size(300, 0);
             TaskLbl.Name = "TaskLbl";
-            TaskLbl.Size = new Size(50, 20);
+            TaskLbl.Size = new Size(55, 23);
             TaskLbl.TabIndex = 1;
             TaskLbl.Text = "label1";
             // 
             // checkTask
             // 
             checkTask.AutoSize = true;
-            checkTask.Location = new Point(3, 25);
+            checkTask.Location = new Point(13, 19);
             checkTask.Name = "checkTask";
             checkTask.Size = new Size(18, 17);
             checkTask.TabIndex = 0;
@@ -68,7 +78,7 @@
             // statusLbl
             // 
             statusLbl.AutoSize = true;
-            statusLbl.Location = new Point(19, 72);
+            statusLbl.Location = new Point(37, 16);
             statusLbl.Name = "statusLbl";
             statusLbl.Size = new Size(13, 20);
             statusLbl.TabIndex = 3;
@@ -76,17 +86,18 @@
             // 
             // userBox
             // 
-            userBox.Location = new Point(83, 2);
+            userBox.BorderStyle = BorderStyle.None;
+            userBox.Location = new Point(112, 12);
             userBox.Name = "userBox";
             userBox.PlaceholderText = "Кто принял зд?";
-            userBox.Size = new Size(161, 27);
+            userBox.Size = new Size(133, 20);
             userBox.TabIndex = 4;
             userBox.KeyDown += userBox_KeyDown;
             // 
             // userLbl
             // 
             userLbl.AutoSize = true;
-            userLbl.Location = new Point(194, 5);
+            userLbl.Location = new Point(122, 16);
             userLbl.Name = "userLbl";
             userLbl.Size = new Size(50, 20);
             userLbl.TabIndex = 5;
@@ -97,15 +108,17 @@
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSize = true;
-            BorderStyle = BorderStyle.FixedSingle;
+            BackColor = Color.White;
             Controls.Add(userLbl);
             Controls.Add(userBox);
             Controls.Add(statusLbl);
             Controls.Add(checkTask);
             Controls.Add(TaskLbl);
             Controls.Add(deleteBtn);
+            MaximumSize = new Size(400, 0);
             Name = "TaskCard";
-            Size = new Size(247, 102);
+            Padding = new Padding(10);
+            Size = new Size(344, 102);
             ResumeLayout(false);
             PerformLayout();
         }

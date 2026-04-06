@@ -71,13 +71,12 @@
             taskBoard.Name = "taskBoard";
             taskBoard.Size = new Size(1476, 499);
             taskBoard.TabIndex = 8;
-            taskBoard.WrapContents = false;
             // 
             // filterBox
             // 
             filterBox.DropDownStyle = ComboBoxStyle.DropDownList;
             filterBox.FormattingEnabled = true;
-            filterBox.Items.AddRange(new object[] { "To Do", "In Progress", "Done", "All"});
+            filterBox.Items.AddRange(new object[] { "To Do", "In Progress", "Done", "All" });
             filterBox.Location = new Point(81, 10);
             filterBox.Name = "filterBox";
             filterBox.Size = new Size(151, 28);
@@ -104,6 +103,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(224, 224, 224);
             ClientSize = new Size(1500, 587);
             Controls.Add(label1);
             Controls.Add(filterBox);
@@ -113,6 +113,8 @@
             Controls.Add(addBtn);
             Name = "Form1";
             Text = "Form1";
+            FormClosing += Form1_FormClosing;
+            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }
