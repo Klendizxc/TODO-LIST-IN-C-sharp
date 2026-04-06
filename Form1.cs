@@ -1,9 +1,4 @@
-using System.Windows.Forms;
-using System.Xml.Serialization;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Text.Json;
-using System.IO;
-using System.Runtime.InteropServices;
 
 namespace WinFormsApp1
 {
@@ -20,23 +15,23 @@ namespace WinFormsApp1
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void addBtn_Click(object sender, EventArgs e)
         {
-            string taskText = InputTask.Text.Trim();
+            string taskText = inputTask.Text.Trim();
 
             if (string.IsNullOrEmpty(taskText))
             {
-                MessageBox.Show("Название задачи и статус не может быть пустым!", "Внимание",
+                MessageBox.Show("РќР°Р·РІР°РЅРёРµ Р·Р°РґР°С‡Рё Рё СЃС‚Р°С‚СѓСЃ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј!", "Р’РЅРёРјР°РЅРёРµ",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                InputTask.Focus();
+                inputTask.Focus();
                 return;
             }
             else
             {
-                TaskCard taskCard = new TaskCard(InputTask.Text);
+                TaskCard taskCard = new TaskCard(inputTask.Text);
                 taskCard.Width = taskBoard.Width - 25;
                 taskBoard.Controls.Add(taskCard);
-                InputTask.Clear();
+                inputTask.Clear();
             }
         }
         private void ApplyFilter()
@@ -82,7 +77,7 @@ namespace WinFormsApp1
                     {
                         Task = card.TaskText,
                         Status = card.Status,
-                        AssignedUser = card.AssignedUser // Забираем имя из карточки
+                        AssignedUser = card.AssignedUser
                     });
                 }
             }

@@ -1,24 +1,11 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
-
 namespace WinFormsApp1
 {
     public partial class TaskCard : UserControl
     {
         public string TaskText
         {
-            get => TaskLbl.Text;
-            set => TaskLbl.Text = value;
+            get => taskLbl.Text;
+            set => taskLbl.Text = value;
         }
         private bool isCompleted => checkTask.Checked;
         private bool isAccepted => userLbl.Text != "";
@@ -92,24 +79,31 @@ namespace WinFormsApp1
             }
         }
 
+        private void SetTaskFont(FontStyle style, Color color)
+        {
+            var oldFont = taskLbl.Font;
+            taskLbl.Font = new Font(oldFont.FontFamily, oldFont.Size, style);
+            taskLbl.ForeColor = color;
+
+            if (oldFont != Font)
+                oldFont.Dispose();
+        }
+
         private void checkTask_CheckedChanged(object sender, EventArgs e)
         {
             if (isCompleted && isAccepted)
             {
-                TaskLbl.Font = new System.Drawing.Font(TaskLbl.Font, FontStyle.Strikeout);
-                TaskLbl.ForeColor = Color.Gray;
-                Status = TaskStatus.Done;
+                SetTaskFont(FontStyle.Strikeout, Color.Gray);
                 Status = TaskStatus.Done;
             }
             else if (!isCompleted && isAccepted)
             {
-
+                SetTaskFont(FontStyle.Regular, Color.FromArgb(64, 64, 64));
                 Status = TaskStatus.InProgress;
             }
             else
             {
-                TaskLbl.Font = new System.Drawing.Font(TaskLbl.Font, FontStyle.Regular);
-                TaskLbl.ForeColor = Color.Black;
+                SetTaskFont(FontStyle.Regular, Color.FromArgb(64, 64, 64));
                 Status = TaskStatus.ToDo;
             }
         }

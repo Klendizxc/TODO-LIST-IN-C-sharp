@@ -1,4 +1,4 @@
-﻿namespace WinFormsApp1
+namespace WinFormsApp1
 {
     partial class Form1
     {
@@ -30,7 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             addBtn = new Button();
-            InputTask = new TextBox();
+            inputTask = new TextBox();
             exceptionLbl = new Label();
             taskBoard = new FlowLayoutPanel();
             filterBox = new ComboBox();
@@ -46,15 +46,15 @@
             addBtn.TabIndex = 2;
             addBtn.Text = "+";
             addBtn.UseVisualStyleBackColor = true;
-            addBtn.Click += button1_Click;
+            addBtn.Click += addBtn_Click;
             // 
             // InputTask
             // 
-            InputTask.Location = new Point(12, 549);
-            InputTask.Name = "InputTask";
-            InputTask.PlaceholderText = "Создать задачу";
-            InputTask.Size = new Size(294, 27);
-            InputTask.TabIndex = 3;
+            inputTask.Location = new Point(12, 549);
+            inputTask.Name = "inputTask";
+            inputTask.PlaceholderText = "Создать задачу";
+            inputTask.Size = new Size(294, 27);
+            inputTask.TabIndex = 3;
             // 
             // exceptionLbl
             // 
@@ -92,7 +92,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 14F);
+            label1.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             label1.Location = new Point(12, 6);
             label1.Name = "label1";
             label1.Size = new Size(63, 32);
@@ -109,7 +109,7 @@
             Controls.Add(filterBox);
             Controls.Add(taskBoard);
             Controls.Add(exceptionLbl);
-            Controls.Add(InputTask);
+            Controls.Add(inputTask);
             Controls.Add(addBtn);
             Name = "Form1";
             Text = "Form1";
@@ -121,7 +121,7 @@
 
         #endregion
         private Button addBtn;
-        private TextBox InputTask;
+        private TextBox inputTask;
         private Label exceptionLbl;
         private FlowLayoutPanel taskBoard;
         private ComboBox filterBox;

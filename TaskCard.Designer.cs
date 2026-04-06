@@ -1,4 +1,4 @@
-﻿namespace WinFormsApp1
+namespace WinFormsApp1
 {
     partial class TaskCard
     {
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             deleteBtn = new Button();
-            TaskLbl = new Label();
+            taskLbl = new Label();
             checkTask = new CheckBox();
             statusLbl = new Label();
             userBox = new TextBox();
@@ -53,17 +53,17 @@
             deleteBtn.MouseEnter += deleteBtn_MouseEnter;
             deleteBtn.MouseLeave += deleteBtn_MouseLeave;
             // 
-            // TaskLbl
+            // taskLbl
             // 
-            TaskLbl.AutoSize = true;
-            TaskLbl.Font = new Font("Segoe UI", 10F);
-            TaskLbl.ForeColor = Color.FromArgb(64, 64, 64);
-            TaskLbl.Location = new Point(13, 49);
-            TaskLbl.MaximumSize = new Size(300, 0);
-            TaskLbl.Name = "TaskLbl";
-            TaskLbl.Size = new Size(55, 23);
-            TaskLbl.TabIndex = 1;
-            TaskLbl.Text = "label1";
+            taskLbl.AutoSize = true;
+            taskLbl.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            taskLbl.ForeColor = Color.FromArgb(64, 64, 64);
+            taskLbl.Location = new Point(13, 49);
+            taskLbl.MaximumSize = new Size(300, 0);
+            taskLbl.Name = "taskLbl";
+            taskLbl.Size = new Size(55, 23);
+            taskLbl.TabIndex = 1;
+            taskLbl.Text = "label1";
             // 
             // checkTask
             // 
@@ -113,7 +113,7 @@
             Controls.Add(userBox);
             Controls.Add(statusLbl);
             Controls.Add(checkTask);
-            Controls.Add(TaskLbl);
+            Controls.Add(taskLbl);
             Controls.Add(deleteBtn);
             MaximumSize = new Size(400, 0);
             Name = "TaskCard";
@@ -126,7 +126,7 @@
         #endregion
         private CheckBox checkTask;
         private Button deleteBtn;
-        private Label TaskLbl;
+        private Label taskLbl;
         private Label statusLbl;
         private TextBox userBox;
         private Label userLbl;
