@@ -29,6 +29,7 @@ namespace WinFormsApp1
             else
             {
                 TaskCard taskCard = new TaskCard(inputTask.Text);
+                taskCard.DeleteRequested += TaskCard_DeleteRequested;
                 taskCard.Width = taskBoard.Width - 25;
                 taskBoard.Controls.Add(taskCard);
                 inputTask.Clear();
@@ -64,6 +65,16 @@ namespace WinFormsApp1
         private void filterBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ApplyFilter();
+        }
+
+        private void TaskCard_DeleteRequested(object? sender, EventArgs e)
+        {
+            if (sender is TaskCard card)
+            {
+                card.DeleteRequested -= TaskCard_DeleteRequested;
+                taskBoard.Controls.Remove(card);
+                card.Dispose();
+            }
         }
         private void SaveTasksToFile()
         {
@@ -107,6 +118,7 @@ namespace WinFormsApp1
                         foreach (var task in savedTasks)
                         {
                             TaskCard taskCard = new TaskCard(task.Task);
+                            taskCard.DeleteRequested += TaskCard_DeleteRequested;
                             taskCard.AssignedUser = task.AssignedUser;
                             taskCard.Status = task.Status;
                             taskCard.Width = taskBoard.Width - 25;

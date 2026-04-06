@@ -93,6 +93,7 @@ namespace WinFormsApp1
             userBox.Size = new Size(133, 20);
             userBox.TabIndex = 4;
             userBox.KeyDown += userBox_KeyDown;
+            userBox.Leave += userBox_Leave;
             // 
             // userLbl
             // 
@@ -100,9 +101,11 @@ namespace WinFormsApp1
             userLbl.Location = new Point(122, 16);
             userLbl.Name = "userLbl";
             userLbl.Size = new Size(50, 20);
+            userLbl.Cursor = Cursors.Hand;
             userLbl.TabIndex = 5;
             userLbl.Text = "label1";
             userLbl.Visible = false;
+            userLbl.Click += userLbl_Click;
             // 
             // TaskCard
             // 

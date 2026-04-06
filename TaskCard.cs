@@ -2,6 +2,7 @@ namespace WinFormsApp1
 {
     public partial class TaskCard : UserControl
     {
+        public event EventHandler? DeleteRequested;
         public string TaskText
         {
             get => taskLbl.Text;
@@ -62,21 +63,43 @@ namespace WinFormsApp1
         }
         private void deleteBtn_Click(object sender, EventArgs e)
         {
-            this.Parent.Controls.Remove(this);
-            this.Dispose();
+            DeleteRequested?.Invoke(this, EventArgs.Empty);
         }
-        private void userBox_KeyDown(object sender, KeyEventArgs e)
+
+        private void AcceptUser()
         {
             string user = userBox.Text.Trim();
-            if (e.KeyCode == Keys.Enter && !string.IsNullOrEmpty(user))
-            {
-                userLbl.Text = userBox.Text;
-                userBox.Enabled = false;
-                userBox.Visible = false;
-                userLbl.Visible = true;
-                e.SuppressKeyPress = true;
+            if (string.IsNullOrEmpty(user))
+                return;
+
+            userLbl.Text = user;
+            userBox.Visible = false;
+            userLbl.Visible = true;
+
+            if (!isCompleted)
                 Status = TaskStatus.InProgress;
+        }
+
+        private void userBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                AcceptUser();
+                e.SuppressKeyPress = true;
             }
+        }
+
+        private void userBox_Leave(object sender, EventArgs e)
+        {
+            AcceptUser();
+        }
+
+        private void userLbl_Click(object sender, EventArgs e)
+        {
+            userBox.Text = userLbl.Text;
+            userLbl.Visible = false;
+            userBox.Visible = true;
+            userBox.Focus();
         }
 
         private void SetTaskFont(FontStyle style, Color color)
