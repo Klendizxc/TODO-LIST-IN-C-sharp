@@ -28,27 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            components = new System.ComponentModel.Container();
             addBtn = new Button();
             InputTask = new TextBox();
             exceptionLbl = new Label();
-            statusBox = new ComboBox();
             taskBoard = new FlowLayoutPanel();
+            filterBox = new ComboBox();
+            imageList1 = new ImageList(components);
+            label1 = new Label();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 14F);
-            label1.Location = new Point(12, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(73, 32);
-            label1.TabIndex = 1;
-            label1.Text = "Tasks:";
             // 
             // addBtn
             // 
-            addBtn.Location = new Point(477, 549);
+            addBtn.Location = new Point(312, 549);
             addBtn.Name = "addBtn";
             addBtn.Size = new Size(63, 29);
             addBtn.TabIndex = 2;
@@ -73,17 +65,6 @@
             exceptionLbl.TabIndex = 6;
             exceptionLbl.Text = " ";
             // 
-            // statusBox
-            // 
-            statusBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            statusBox.FormattingEnabled = true;
-            statusBox.Items.AddRange(new object[] { "To Do", "In Progress", "Done" });
-            statusBox.Location = new Point(320, 550);
-            statusBox.Name = "statusBox";
-            statusBox.Size = new Size(151, 28);
-            statusBox.TabIndex = 7;
-            statusBox.SelectedIndexChanged += statusBox_SelectedIndexChanged;
-            // 
             // taskBoard
             // 
             taskBoard.Location = new Point(12, 44);
@@ -92,17 +73,44 @@
             taskBoard.TabIndex = 8;
             taskBoard.WrapContents = false;
             // 
+            // filterBox
+            // 
+            filterBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            filterBox.FormattingEnabled = true;
+            filterBox.Items.AddRange(new object[] { "To Do", "In Progress", "Done" });
+            filterBox.Location = new Point(81, 10);
+            filterBox.Name = "filterBox";
+            filterBox.Size = new Size(151, 28);
+            filterBox.TabIndex = 9;
+            filterBox.SelectedIndexChanged += filterBox_SelectedIndexChanged;
+            // 
+            // imageList1
+            // 
+            imageList1.ColorDepth = ColorDepth.Depth32Bit;
+            imageList1.ImageSize = new Size(16, 16);
+            imageList1.TransparentColor = Color.Transparent;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 14F);
+            label1.Location = new Point(12, 6);
+            label1.Name = "label1";
+            label1.Size = new Size(63, 32);
+            label1.TabIndex = 10;
+            label1.Text = "filter";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1500, 587);
+            Controls.Add(label1);
+            Controls.Add(filterBox);
             Controls.Add(taskBoard);
-            Controls.Add(statusBox);
             Controls.Add(exceptionLbl);
             Controls.Add(InputTask);
             Controls.Add(addBtn);
-            Controls.Add(label1);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
@@ -110,12 +118,12 @@
         }
 
         #endregion
-
-        private Label label1;
         private Button addBtn;
         private TextBox InputTask;
         private Label exceptionLbl;
-        private ComboBox statusBox;
         private FlowLayoutPanel taskBoard;
+        private ComboBox filterBox;
+        private ImageList imageList1;
+        private Label label1;
     }
 }

@@ -14,9 +14,8 @@ namespace WinFormsApp1
         private void button1_Click(object sender, EventArgs e)
         {
             string taskText = InputTask.Text.Trim();
-            string statusText = statusBox.Text.Trim();
 
-            if (string.IsNullOrEmpty(taskText) || string.IsNullOrEmpty(statusText))
+            if (string.IsNullOrEmpty(taskText))
             {
                 MessageBox.Show("Название задачи и статус не может быть пустым!", "Внимание",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -25,7 +24,7 @@ namespace WinFormsApp1
             }
             else
             {
-                TaskCard taskCard = new TaskCard(InputTask.Text, statusBox.Text);
+                TaskCard taskCard = new TaskCard(InputTask.Text, "To Do");
                 taskCard.Width = taskBoard.Width - 25;
                 taskBoard.Controls.Add(taskCard);
                 InputTask.Clear();
@@ -33,32 +32,28 @@ namespace WinFormsApp1
         }
         private void ApplyFilter()
         {
-            string selectedFilter = statusBox.Text;
+            string selectedFilter = filterBox.Text;
             foreach (Control control in taskBoard.Controls)
             {
                 if (control is TaskCard taskCard)
                 {
-                    if (selectedFilter == "")
+                    if (selectedFilter == taskCard.Status)
                     {
                         taskCard.Visible = true;
                     }
-                    else if (selectedFilter == "To Do")
+                    else if (selectedFilter == "All")
                     {
                         taskCard.Visible = true;
                     }
-                    else if (selectedFilter == "In Progress")
+                    else
                     {
-                        taskCard.Visible = !taskCard.IsCompleted;
-                    }
-                    else if (selectedFilter == "Done")
-                    {
-                        taskCard.Visible = taskCard.IsCompleted;
+                        taskCard.Visible = false;
                     }
                 }
             }
         }
 
-        private void statusBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void filterBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ApplyFilter();
         }
