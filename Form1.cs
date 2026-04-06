@@ -1,4 +1,5 @@
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WinFormsApp1
 {
@@ -11,27 +12,22 @@ namespace WinFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string taskText = InputTask.Text.Trim();
+            string statusText = statusBox.Text.Trim();
 
-            try
+            if (string.IsNullOrEmpty(taskText) || string.IsNullOrEmpty(statusText))
             {
-                if (InputTask.Text == "")
-                {
-                    throw new ArgumentException("Task cannot be empty.");
-                }
-                else
-                {
-                    if (!string.IsNullOrWhiteSpace(InputTask.Text))
-                    {
-                        TaskCard taskCard = new TaskCard(InputTask.Text);
-                        taskCard.Width = taskBoard.Width - 25;
-                        taskBoard.Controls.Add(taskCard);
-                        InputTask.Clear();
-                    }
-                }
+                MessageBox.Show("Название задачи и статус не может быть пустым!", "Внимание",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                InputTask.Focus();
+                return;
             }
-            catch
+            else
             {
-
+                TaskCard taskCard = new TaskCard(InputTask.Text, statusBox.Text);
+                taskCard.Width = taskBoard.Width - 25;
+                taskBoard.Controls.Add(taskCard);
+                InputTask.Clear();
             }
         }
     }

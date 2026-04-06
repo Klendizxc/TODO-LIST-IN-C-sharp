@@ -31,6 +31,7 @@
             deleteBtn = new Button();
             TaskLbl = new Label();
             checkTask = new CheckBox();
+            statusLbl = new Label();
             SuspendLayout();
             // 
             // deleteBtn
@@ -61,11 +62,21 @@
             checkTask.TabIndex = 0;
             checkTask.UseVisualStyleBackColor = true;
             // 
+            // statusLbl
+            // 
+            statusLbl.AutoSize = true;
+            statusLbl.Location = new Point(19, 72);
+            statusLbl.Name = "statusLbl";
+            statusLbl.Size = new Size(13, 20);
+            statusLbl.TabIndex = 3;
+            statusLbl.Text = " ";
+            // 
             // TaskCard
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSize = true;
             BorderStyle = BorderStyle.FixedSingle;
+            Controls.Add(statusLbl);
             Controls.Add(checkTask);
             Controls.Add(TaskLbl);
             Controls.Add(deleteBtn);
@@ -79,5 +90,6 @@
         private CheckBox checkTask;
         private Button deleteBtn;
         private Label TaskLbl;
+        private Label statusLbl;
     }
 }

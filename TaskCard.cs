@@ -18,11 +18,17 @@ namespace WinFormsApp1
             get => TaskLbl.Text;
             set => TaskLbl.Text = value;
         }
+        public string Status 
+        {
+            get => statusLbl.Text;
+            set => statusLbl.Text = value;
+        }
 
-        public TaskCard(string text)
+        public TaskCard(string text, string status)
         {
             InitializeComponent();
             TaskText = text;
+            Status = status;
         }
         private void deleteBtn_Click(object sender, EventArgs e)
         {

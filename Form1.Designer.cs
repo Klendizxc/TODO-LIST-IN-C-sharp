@@ -32,7 +32,7 @@
             addBtn = new Button();
             InputTask = new TextBox();
             exceptionLbl = new Label();
-            StatusBox = new ComboBox();
+            statusBox = new ComboBox();
             taskBoard = new FlowLayoutPanel();
             SuspendLayout();
             // 
@@ -73,14 +73,15 @@
             exceptionLbl.TabIndex = 6;
             exceptionLbl.Text = " ";
             // 
-            // StatusBox
+            // statusBox
             // 
-            StatusBox.FormattingEnabled = true;
-            StatusBox.Items.AddRange(new object[] { "To Do", "In Progress", "Done" });
-            StatusBox.Location = new Point(320, 550);
-            StatusBox.Name = "StatusBox";
-            StatusBox.Size = new Size(151, 28);
-            StatusBox.TabIndex = 7;
+            statusBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            statusBox.FormattingEnabled = true;
+            statusBox.Items.AddRange(new object[] { "To Do", "In Progress", "Done" });
+            statusBox.Location = new Point(320, 550);
+            statusBox.Name = "statusBox";
+            statusBox.Size = new Size(151, 28);
+            statusBox.TabIndex = 7;
             // 
             // taskBoard
             // 
@@ -96,7 +97,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1500, 587);
             Controls.Add(taskBoard);
-            Controls.Add(StatusBox);
+            Controls.Add(statusBox);
             Controls.Add(exceptionLbl);
             Controls.Add(InputTask);
             Controls.Add(addBtn);
@@ -113,7 +114,7 @@
         private Button addBtn;
         private TextBox InputTask;
         private Label exceptionLbl;
-        private ComboBox StatusBox;
+        private ComboBox statusBox;
         private FlowLayoutPanel taskBoard;
     }
 }
