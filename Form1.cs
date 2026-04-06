@@ -1,4 +1,5 @@
 using System.Windows.Forms;
+using System.Xml.Serialization;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WinFormsApp1
@@ -29,6 +30,37 @@ namespace WinFormsApp1
                 taskBoard.Controls.Add(taskCard);
                 InputTask.Clear();
             }
+        }
+        private void ApplyFilter()
+        {
+            string selectedFilter = statusBox.Text;
+            foreach (Control control in taskBoard.Controls)
+            {
+                if (control is TaskCard taskCard)
+                {
+                    if (selectedFilter == "")
+                    {
+                        taskCard.Visible = true;
+                    }
+                    else if (selectedFilter == "To Do")
+                    {
+                        taskCard.Visible = true;
+                    }
+                    else if (selectedFilter == "In Progress")
+                    {
+                        taskCard.Visible = !taskCard.IsCompleted;
+                    }
+                    else if (selectedFilter == "Done")
+                    {
+                        taskCard.Visible = taskCard.IsCompleted;
+                    }
+                }
+            }
+        }
+
+        private void statusBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplyFilter();
         }
     }
 }

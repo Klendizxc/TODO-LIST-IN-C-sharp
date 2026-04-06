@@ -82,6 +82,7 @@
             statusBox.Name = "statusBox";
             statusBox.Size = new Size(151, 28);
             statusBox.TabIndex = 7;
+            statusBox.SelectedIndexChanged += statusBox_SelectedIndexChanged;
             // 
             // taskBoard
             // 

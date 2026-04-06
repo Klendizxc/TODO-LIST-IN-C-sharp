@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace WinFormsApp1
 {
@@ -18,17 +19,14 @@ namespace WinFormsApp1
             get => TaskLbl.Text;
             set => TaskLbl.Text = value;
         }
-        public string Status 
-        {
-            get => statusLbl.Text;
-            set => statusLbl.Text = value;
-        }
+        public bool IsCompleted => checkTask.Checked;
+        public string Status { get => statusLbl.Text; set => statusLbl.Text = value; }
 
         public TaskCard(string text, string status)
         {
             InitializeComponent();
             TaskText = text;
-            Status = status;
+           Status = status;
         }
         private void deleteBtn_Click(object sender, EventArgs e)
         {
