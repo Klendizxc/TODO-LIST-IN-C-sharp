@@ -67,42 +67,58 @@ namespace WinFormsApp1
         }
         private void SaveTasksToFile()
         {
-            List<TaskData> tasksToSave = new List<TaskData>();
-
-            foreach (Control control in taskBoard.Controls)
+            try
             {
-                if (control is TaskCard card)
+                List<TaskData> tasksToSave = new List<TaskData>();
+
+                foreach (Control control in taskBoard.Controls)
                 {
-                    tasksToSave.Add(new TaskData
+                    if (control is TaskCard card)
                     {
-                        Task = card.TaskText,
-                        Status = card.Status,
-                        AssignedUser = card.AssignedUser
-                    });
+                        tasksToSave.Add(new TaskData
+                        {
+                            Task = card.TaskText,
+                            Status = card.Status,
+                            AssignedUser = card.AssignedUser
+                        });
+                    }
                 }
+                var options = new JsonSerializerOptions { WriteIndented = true };
+                string jsonString = JsonSerializer.Serialize(tasksToSave, options);
+                File.WriteAllText("myTasks.json", jsonString);
             }
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            string jsonString = JsonSerializer.Serialize(tasksToSave, options);
-            File.WriteAllText("myTasks.json", jsonString);
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при сохранении задач: {ex.Message}", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void LoadTasksFromFile()
         {
-            if (File.Exists("myTasks.json"))
+            try
             {
-                string jsonString = File.ReadAllText("myTasks.json");
-                var savedTasks = JsonSerializer.Deserialize<List<TaskData>>(jsonString);
-
-                if (savedTasks != null)
+                if (File.Exists("myTasks.json"))
                 {
-                    foreach (var task in savedTasks)
+                    string jsonString = File.ReadAllText("myTasks.json");
+                    var savedTasks = JsonSerializer.Deserialize<List<TaskData>>(jsonString);
+
+                    if (savedTasks != null)
                     {
-                        TaskCard taskCard = new TaskCard(task.Task);
-                        taskCard.AssignedUser = task.AssignedUser;
-                        taskCard.Status = task.Status;
-                        taskCard.Width = taskBoard.Width - 25;
-                        taskBoard.Controls.Add(taskCard);
+                        foreach (var task in savedTasks)
+                        {
+                            TaskCard taskCard = new TaskCard(task.Task);
+                            taskCard.AssignedUser = task.AssignedUser;
+                            taskCard.Status = task.Status;
+                            taskCard.Width = taskBoard.Width - 25;
+                            taskBoard.Controls.Add(taskCard);
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке задач: {ex.Message}", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
