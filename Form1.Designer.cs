@@ -77,7 +77,7 @@
             // 
             filterBox.DropDownStyle = ComboBoxStyle.DropDownList;
             filterBox.FormattingEnabled = true;
-            filterBox.Items.AddRange(new object[] { "To Do", "In Progress", "Done" });
+            filterBox.Items.AddRange(new object[] { "To Do", "In Progress", "Done", "All"});
             filterBox.Location = new Point(81, 10);
             filterBox.Name = "filterBox";
             filterBox.Size = new Size(151, 28);

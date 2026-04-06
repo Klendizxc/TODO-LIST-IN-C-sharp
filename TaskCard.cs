@@ -22,13 +22,28 @@ namespace WinFormsApp1
         private bool isCompleted => checkTask.Checked;
         private bool isAccepted => userLbl.Text != "";
 
-        public string Status { get => statusLbl.Text; set => statusLbl.Text = value; }
+        private TaskStatus _status;
 
-        public TaskCard(string text, string status)
+        public TaskStatus Status
+        {
+            get => _status;
+            set
+            {
+                _status = value;
+
+                if (_status == TaskStatus.ToDo)
+                    statusLbl.Text = "To Do";
+                else if (_status == TaskStatus.InProgress)
+                    statusLbl.Text = "In Progress";
+                else if (_status == TaskStatus.Done)
+                    statusLbl.Text = "Done";
+            }
+        }
+
+        public TaskCard(string text)
         {
             InitializeComponent();
             TaskText = text;
-            Status = status;
             userLbl.Text = "";
         }
         private void deleteBtn_Click(object sender, EventArgs e)
@@ -46,7 +61,7 @@ namespace WinFormsApp1
                 userBox.Visible = false;
                 userLbl.Visible = true;
                 e.SuppressKeyPress = true;
-                Status = "In Progress";
+                _status = TaskStatus.InProgress;
             }
         }
 
@@ -54,15 +69,15 @@ namespace WinFormsApp1
         {
             if (isCompleted && isAccepted)
             {
-                Status = "Done";
+                Status = TaskStatus.Done;
             }
             else if (!isCompleted && isAccepted)
             {
-                Status = "In Progress";
+                Status = TaskStatus.InProgress;
             }
             else
             {
-                Status = "To Do";
+                Status = TaskStatus.ToDo;
             }
         }
     }

@@ -4,6 +4,12 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WinFormsApp1
 {
+    public enum TaskStatus
+    {
+        ToDo,
+        InProgress,
+        Done
+    }
     public partial class Form1 : Form
     {
         public Form1()
@@ -24,7 +30,7 @@ namespace WinFormsApp1
             }
             else
             {
-                TaskCard taskCard = new TaskCard(InputTask.Text, "To Do");
+                TaskCard taskCard = new TaskCard(InputTask.Text);
                 taskCard.Width = taskBoard.Width - 25;
                 taskBoard.Controls.Add(taskCard);
                 InputTask.Clear();
@@ -37,17 +43,21 @@ namespace WinFormsApp1
             {
                 if (control is TaskCard taskCard)
                 {
-                    if (selectedFilter == taskCard.Status)
+                    if (selectedFilter == "All" || string.IsNullOrEmpty(selectedFilter))
                     {
                         taskCard.Visible = true;
                     }
-                    else if (selectedFilter == "All")
+                    else if (selectedFilter == "To Do")
                     {
-                        taskCard.Visible = true;
+                        taskCard.Visible = (taskCard.Status == TaskStatus.ToDo);
                     }
-                    else
+                    else if (selectedFilter == "In Progress")
                     {
-                        taskCard.Visible = false;
+                        taskCard.Visible = (taskCard.Status == TaskStatus.InProgress);
+                    }
+                    else if (selectedFilter == "Done")
+                    {
+                        taskCard.Visible = (taskCard.Status == TaskStatus.Done);
                     }
                 }
             }
