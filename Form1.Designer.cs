@@ -86,14 +86,15 @@
             // 
             taskBoard.Location = new Point(12, 44);
             taskBoard.Name = "taskBoard";
-            taskBoard.Size = new Size(1034, 499);
+            taskBoard.Size = new Size(1476, 499);
             taskBoard.TabIndex = 8;
+            taskBoard.WrapContents = false;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1058, 587);
+            ClientSize = new Size(1500, 587);
             Controls.Add(taskBoard);
             Controls.Add(StatusBox);
             Controls.Add(exceptionLbl);

@@ -63,8 +63,9 @@
             // 
             // TaskCard
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
+            AutoSize = true;
+            BorderStyle = BorderStyle.FixedSingle;
             Controls.Add(checkTask);
             Controls.Add(TaskLbl);
             Controls.Add(deleteBtn);
